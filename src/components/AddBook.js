@@ -40,20 +40,21 @@ const AddCheytam = ({ id, setCheytamId }) => {
     setDescription("");
   };
 
-  const editHandler = async () => {
-    setMessage("");
-    try {
-      const docSnap = await CheytamDataService.getCheytam(id);
-      console.log("the record is :", docSnap.data());
-      setTitle(docSnap.data().title);
-      setDescription(docSnap.data().description);
-      setStatus(docSnap.data().status);
-    } catch (err) {
-      setMessage({ error: true, msg: err.message });
-    }
-  };
+  
 
   useEffect(() => {
+    const editHandler = async () => {
+      setMessage("");
+      try {
+        const docSnap = await CheytamDataService.getCheytam(id);
+        console.log("the record is :", docSnap.data());
+        setTitle(docSnap.data().title);
+        setDescription(docSnap.data().description);
+        setStatus(docSnap.data().status);
+      } catch (err) {
+        setMessage({ error: true, msg: err.message });
+      }
+    };
     console.log("The id here is : ", id);
     if (id !== undefined && id !== "") {
       editHandler();
